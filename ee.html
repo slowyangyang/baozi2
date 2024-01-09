@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preload" href="./css/test1.css" as="style">
+		<link rel="preload" href="./css/test2.css" as="style">
+		<title>Document</title>
+	</head>
+	<body>
+		<img src="" alt="" importance="auto">
+
+		<script>
+			let a = 123,
+				b = '234',
+				c = true,
+				d = [1, 2, 3, 4],
+				e = {
+					name: 'ming'
+				},
+				f = function() {
+					let a = 8
+				}
+			console.log(typeof a);
+			console.log(typeof b);
+			console.log(typeof c);
+			console.log('33', e instanceof Object);
+			console.log(Object.prototype.toString.call(e) == '[object Object]');
+			console.log(typeof f);
+		</script>
+	</body>
+</html>

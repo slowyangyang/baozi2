@@ -1,0 +1,140 @@
+ <!DOCTYPE html>
+ <html>
+ 	<head>
+ 		<meta charset="utf-8" />
+ 		<meta name="viewport" content="width=device-width, initial-scale=1">
+ 		<title>dragle</title>
+ 	</head>
+ 	<style>
+ 		.project {
+ 			width: 50%;
+ 			margin: 0 auto;
+ 			padding: 10px 20px;
+ 			display: flex;
+ 			justify-content: space-around;
+ 			align-items: center
+ 		}
+
+ 		p {
+ 			flex: 1;
+ 			border-radius: 6px;
+ 			text-align: center;
+ 			padding: 10px 20px;
+ 			cursor: pointer;
+ 			margin-right: 10px;
+ 		}
+
+ 		.yuwen {
+ 			background-color: antiquewhite;
+ 		}
+
+ 		.shuxue {
+ 			background-color: aqua;
+ 		}
+
+ 		.yingyu {
+ 			background-color: aquamarine;
+ 		}
+
+ 		.wuli {
+ 			background-color: bisque;
+ 		}
+
+ 		.shengwu {
+ 			background-color: blue;
+ 		}
+
+ 		.huaxue {
+ 			background-color: blueviolet;
+ 		}
+
+ 		.lishi {
+ 			background-color: aquamarine;
+ 		}
+
+ 		.dili {
+ 			background-color: burlywood;
+ 		}
+
+ 		.zhengzhi {
+ 			background-color: brown;
+ 		}
+
+ 		table {
+
+ 			margin: 0 auto;
+
+ 			td {
+ 				width: 100px;
+ 				height: 60px;
+ 				border: 1px solid #333;
+
+ 			}
+ 		}
+ 	</style>
+ 	<body>
+ 		<div class="project">
+ 			<p class="yuwen" draggable='true'>语文</p>
+ 			<p class="shuxue" draggable='true'>数学</p>
+ 			<p class="yingyu" draggable='true'>英语</p>
+ 			<p class="wuli" draggable='true'>物理</p>
+ 			<p class="shengwu" draggable='true'>生物</p>
+ 			<p class="huaxue" draggable='true'>化学</p>
+ 			<p class="lishi" draggable='true'>历史</p>
+ 			<p class="dili" draggable='true'>地理</p>
+ 			<p class="zhengzhi" draggable='true'>政治</p>
+ 		</div>
+ 		<table>
+ 			<tr>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 			</tr>
+ 			<tr>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 			</tr>
+ 			<tr>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 				<td></td>
+ 			</tr>
+ 		</table>
+ 	</body>
+ 	<script>
+ 		let p = document.querySelectorAll('p')
+ 		let source = null
+ 		for (let i = 0; i < p.length; i++) {
+ 			p[i].ondragstart = function(e) {
+ 				source = e.target
+ 			}
+ 		}
+ 		let table = document.querySelector('table')
+ 		table.addEventListener('dragover', function(e) {
+ 			e.preventDefault();
+ 		})
+
+ 		table.addEventListener('dragenter', function(e) {
+
+ 		})
+ 		table.addEventListener('drop', (e) => {
+ 			console.log(source);
+ 			let cloned = source.cloneNode(true)
+ 			e.target.appendChild(cloned)
+
+ 		})
+ 	</script>
+ </html>

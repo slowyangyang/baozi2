@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const menus = [
+          {
+            icon: '1-shebeixuanzhong',
+            path: '/equip',
+            assembly: 'parent',
+            title: '设备管理',
+            type: '0',
+            children: [
+              {
+                path: '/equip/equipList',
+                assembly: 'equip/equipList',
+                title: '设备列表',
+                type: '0'
+              },
+              {
+                path: '/equip/equipIssue',
+                assembly: 'equip/equipIssue',
+                title: '设备下发',
+                type: '0'
+              }
+            ]
+          },
+          {
+            icon: 'guize-xuanzhong',
+            path: '/rule',
+            assembly: 'rule',
+            title: '规则管理',
+            type: '0',
+            children: [
+                {
+                    title: '查看',
+                    type: '1'
+                },
+                {
+                    title: '删除',
+                    type: '1'
+                },
+            ]
+          },
+          {
+            icon: 'baobiao',
+            path: '/report',
+            title: '统计报表',
+            assembly: 'parent',
+            type: '0',
+            children: [
+              {
+                path: '/report/updateReport',
+                assembly: 'report/updateReport',
+                title: '升级报表',
+                type: '0',
+                children: [
+                {
+                    title: '查看',
+                    type: '1',
+                    path: '/yuwen',
+                    assembly: 'yuwen'
+                },
+                {
+                    title: '删除',
+                    type: '1',
+                    path: '/shanchu',
+                    assembly: 'shanchu'
+                },
+            ]
+              },
+              {
+                path: '/report/equipFault',
+                assembly: 'report/equipFault',
+                title: '设备故障表',
+                type: '0'
+              }
+            ]
+          },
+          {
+            icon: 'xitongguanlixuanzhong',
+            path: '/system',
+            title: '系统管理',
+            type: '0',
+            assembly: 'parent',
+            children: [
+              {
+                path: '/system/permission',
+                assembly: 'system/permission',
+                title: '权限管理',
+                type: '0',
+                children: [
+                    {
+                        title: '查看',
+                        type: '1'
+                    },
+                    {
+                        title: '删除',
+                        type: '1'
+                    },
+                ]
+              },
+              {
+                path: '/system/log',
+                assembly: 'system/permission',
+                title: '系统日志',
+                type: '0'
+              }
+            ]
+          }
+        ]
+
+        console.log(menus);
+        /**
+         * 
+        */
+       
+
+        function digui(menus, arr = []) {
+            for(let i = 0; i < menus.length; i++) {
+                if(menus[i].children && menus[i].children.length) {
+                    let temp = {...menu[i]}
+                    temp.children = []
+                    arr.push(temp)
+                    digui(menus[i].children, arr)
+                }else {
+
+                }
+            }
+        }
+    </script>
+</body>
+</html>
