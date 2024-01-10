@@ -1,174 +1,436 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title></title>
-	</head>
-	<style>
-		.carousel {
-			width: 100%;
-			height: 34rem;
-			margin: 0 auto;
-			position: relative;
-			overflow: hidden;
+	<head lang="en">
+		<meta charset="UTF-8">
+		<link type="text/css" href="YoungerSister.css" rel="stylesheet ">
+		<title>YoungerSister</title>
+		<style>
+			<pre name="code" class="css">* {
+				padding: 0;
+				margin: 0;
+			}
 
+			body {
+				width: 100%;
+				height: 100%;
+				background: #333;
+			}
 
-		}
+			#react {
+				width: 400px;
+				height: 400px;
+				margin: 400px auto;
+				transform-style: preserve-3d;
+				animation: rotate 20s infinite;
+				animation-timing-function: linear;
+			}
 
-		.carouselItem {
-			width: 25rem;
-			height: 25rem;
-			position: absolute;
-			top: 0;
-			left: 50%;
-			margin-left: -175px;
-			transition: transform 0.3s linear;
-		}
+			#react div {
+				position: absolute;
+				transition: all .4s;
+			}
 
-		.carouselItem img {
-			width: 100%;
-			height: 100%;
-		}
+			div .out_pic {
+				width: 400px;
+				height: 400px;
+				opacity: 0.9;
+			}
 
-		.prev {
-			width: 3rem;
-			height: 100%;
-			position: absolute;
-			left: 0;
-			text-align: center;
-			line-height: 34rem;
-			font-size: 20px;
-			cursor: pointer;
-			background: rgba(0, 0, 0, 0.5);
-			z-index: 100;
-		}
+			div .in_pic {
+				width: 200px;
+				height: 200px;
+			}
 
-		.next {
-			width: 3rem;
-			height: 100%;
-			position: absolute;
-			right: 0;
-			text-align: center;
-			line-height: 34rem;
-			font-size: 20px;
-			cursor: pointer;
-			background: rgba(0, 0, 0, 0.5);
-			z-index: 100;
+			#react span {
+				display: block;
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				top: 50px;
+				left: 50px;
+			}
 
-		}
-
-		.prev:hover,
-		.next:hover {
-			background: rgba(0, 0, 0, 1);
-			color: #fff;
-		}
-	</style>
-	<body>
-		<div class="carousel">
-			<div class="carouselItem">
-				<img src="./img/01.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/02.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/03.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/04.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/05.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/06.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/07.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/08.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/09.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/10.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/11.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/12.jpg" alt="" />
-			</div>
-			<div class="carouselItem">
-				<img src="./img/13.jpg" alt="" />
-			</div>
-
-			<div class="prev">
-				< </div>
-					<div class="next">></div>
-			</div>
-	</body>
-	<script>
-		let carouselItem = document.querySelectorAll('.carouselItem')
-		let itemLen = carouselItem.length
-		let prev = document.querySelector('.prev')
-		let next = document.querySelector('.next')
-		console.log(carouselItem);
-		let curIndex = 0
-		// 倍率
-		let scaleStep = 0.8
-		let opacityStep = 0.8
-
-		function layout() {
-			for (let i = 0; i < itemLen; i++) {
-				let sign = Math.sign(i - curIndex)
-				// translatex  rotate  scale
-				let xOffset = (i - curIndex) * 100
-				if (i !== curIndex) {
-					xOffset = xOffset + 100 * sign
+			@keyframes rotate {
+				from {
+					transform: rotateX(0deg) rotateY(0deg);
 				}
-				let scale = scaleStep **
-					Math.abs(curIndex - i)
-				let zindex = itemLen - Math.abs(i - curIndex)
-				let rotate = i == curIndex ? 0 : -sign * 50
-				let opacity = opacityStep **
-					Math.abs(curIndex - i)
-				// opacity
 
-				//  zindex
-
-				carouselItem[i].style.cssText =
-					`transform: translateX(${xOffset}px) scale(${scale}) rotateY(${rotate}deg); z-index: ${zindex}; opacity: ${opacity}`
+				to {
+					transform: rotateX(360deg) rotateY(360deg);
+				}
 			}
+
+			.out_front {
+				transform: translateZ(200px);
+			}
+
+			.out_back {
+				transform: translateZ(-200px);
+			}
+
+			.out_left {
+				transform: rotateY(90deg) translateZ(200px);
+			}
+
+			.out_right {
+				transform: rotateY(-90deg) translateZ(200px);
+			}
+
+			.out_top {
+				transform: rotateX(90deg) translateZ(200px);
+			}
+
+			.out_bottom {
+				transform: rotateX(-90deg) translateZ(200px);
+			}
+
+			.in_front {
+				transform: translateZ(50px);
+			}
+
+			.in_back {
+				transform: translateZ(-50px);
+			}
+
+			.in_left {
+				transform: rotateY(90deg) translateZ(50px);
+			}
+
+			.in_right {
+				transform: rotateY(-90deg) translateZ(50px);
+			}
+
+			.in_top {
+				transform: rotateX(90deg) translateZ(50px);
+			}
+
+			.in_bottom {
+				transform: rotateX(-90deg) translateZ(50px);
+			}
+
+			/*外面的图片散开*/
+			#react:hover .out_front {
+				transform: translateZ(400px);
+			}
+
+			#react:hover .out_back {
+				transform: translateZ(-400px);
+			}
+
+			#react:hover .out_left {
+				transform: rotateY(90deg) translateZ(400px);
+			}
+
+			#react:hover .out_right {
+				transform: rotateY(-90deg) translateZ(400px);
+			}
+
+			#react:hover .out_top {
+				transform: rotateX(90deg) translateZ(400px);
+			}
+
+			#react:hover .out_bottom {
+				transform: rotateX(-90deg) translateZ(400px);
+			}
+
+			/*里面的图片散开*/
+			#react:hover .in_front {
+				transform: translateZ(200px);
+			}
+
+			#react:hover .in_back {
+				transform: translateZ(-200px);
+			}
+
+			#react:hover .in_left {
+				transform: rotateY(90deg) translateZ(200px);
+			}
+
+			#react:hover .in_right {
+				transform: rotateY(-90deg) translateZ(200px);
+			}
+
+			#react:hover .in_top {
+				transform: rotateX(90deg) translateZ(200px);
+			}
+
+			#react:hover .in_bottom {
+				transform: rotateX(-90deg) translateZ(200px);
+			}
+		</style>
+	</head>
+	<body>
+		<audio autoplay loop>
+			<source src="./881840.ogg">
+		</audio>
+		<div id="react">
+			<div class="out_front">
+				<img src="./img/01.jpg" class="out_pic">
+			</div>
+			<div class="out_back">
+				<img src="./img/03.jpg" class="out_pic">
+			</div>
+			<div class="out_left">
+				<img src="./img/13.jpg" class="out_pic">
+			</div>
+			<div class="out_right">
+				<img src="./img/04.jpg" class="out_pic">
+			</div>
+			<div class="out_top">
+				<img src="./img/05.jpg" class="out_pic">
+			</div>
+			<div class="out_bottom">
+				<img src="./img/06.jpg" class="out_pic">
+			</div>
+			<span class="in_front">
+				<img src="./img/07.jpg" class="in_pic">
+			</span>
+			<span class="in_back">
+				<img src="./img/08.jpg" class="in_pic">
+			</span>
+			<span class="in_left">
+				<img src="./img/09.jpg" class="in_pic">
+			</span>
+			<span class="in_right">
+				<img src="./img/10.jpg" class="in_pic">
+			</span>
+			<span class="in_top">
+				<img src="./img/11.jpg" class="in_pic">
+			</span>
+			<span class="in_bottom">
+				<img src="./img/12.jpg" class="in_pic">
+			</span>
+		</div>
+	</body>
+</html>
+<!-- 二、css代码 -->
+<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		max-width: 100%;
+		min-width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: 100% 100%;
+		position: absolute;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: #57faff;
+
+	}
+
+	li {
+		list-style: none;
+	}
+
+	.box {
+		width: 200px;
+		height: 200px;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: 100% 100%;
+		position: absolute;
+		margin-left: 42%;
+		margin-right: 22%;
+		-webkit-transform-style: preserve-3d;
+		-webkit-transform: rotateX(13deg);
+		-webkit-animation: move 5s linear infinite;
+	}
+
+	.minbox {
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		left: 50px;
+		top: 30px;
+		-webkit-transform-style: preserve-3d;
+
+	}
+
+	.minbox li {
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	.minbox li:nth-child(1) {
+		background: url(../img/01.png) no-repeat 0 0;
+		-webkit-transform: translateZ(50px);
+	}
+
+	.minbox li:nth-child(2) {
+		background: url(../img/02.png) no-repeat 0 0;
+		-webkit-transform: rotateX(180deg) translateZ(50px);
+	}
+
+	.minbox li:nth-child(3) {
+		background: url(../img/03.png) no-repeat 0 0;
+		-webkit-transform: rotateX(-90deg) translateZ(50px);
+	}
+
+	.minbox li:nth-child(4) {
+		background: url(../img/04.png) no-repeat 0 0;
+		-webkit-transform: rotateX(90deg) translateZ(50px);
+	}
+
+	.minbox li:nth-child(5) {
+		background: url(../img/05.png) no-repeat 0 0;
+		-webkit-transform: rotateY(-90deg) translateZ(50px);
+	}
+
+	.minbox li:nth-child(6) {
+		background: url(../img/06.png) no-repeat 0 0;
+		-webkit-transform: rotateY(90deg) translateZ(50px);
+	}
+
+	.maxbox li:nth-child(1) {
+		background: url(../img/1.png) no-repeat 0 0;
+		-webkit-transform: translateZ(50px);
+	}
+
+	.maxbox li:nth-child(2) {
+		background: url(../img/2.png) no-repeat 0 0;
+		-webkit-transform: rotateX(180deg) translateZ(50px);
+	}
+
+	.maxbox li:nth-child(3) {
+		background: url(../img/3.png) no-repeat 0 0;
+		-webkit-transform: rotateX(-90deg) translateZ(50px);
+	}
+
+	.maxbox li:nth-child(4) {
+		background: url(../img/4.png) no-repeat 0 0;
+		-webkit-transform: rotateX(90deg) translateZ(50px);
+	}
+
+	.maxbox li:nth-child(5) {
+		background: url(../img/5.png) no-repeat 0 0;
+		-webkit-transform: rotateY(-90deg) translateZ(50px);
+	}
+
+	.maxbox li:nth-child(6) {
+		background: url(../img/6.png) no-repeat 0 0;
+		-webkit-transform: rotateY(90deg) translateZ(50px);
+	}
+
+	.maxbox {
+		width: 800px;
+		height: 400px;
+		position: absolute;
+		left: 0;
+		top: -20px;
+		-webkit-transform-style: preserve-3d;
+	}
+
+	.maxbox li {
+		width: 200px;
+		height: 200px;
+		background: #fff;
+		border: 1px solid #ccc;
+		position: absolute;
+		left: 0;
+		top: 0;
+		opacity: 0.2;
+		-webkit-transition: all 1s ease;
+	}
+
+	.maxbox li:nth-child(1) {
+		-webkit-transform: translateZ(100px);
+	}
+
+	.maxbox li:nth-child(2) {
+		-webkit-transform: rotateX(180deg) translateZ(100px);
+	}
+
+	.maxbox li:nth-child(3) {
+		-webkit-transform: rotateX(-90deg) translateZ(100px);
+	}
+
+	.maxbox li:nth-child(4) {
+		-webkit-transform: rotateX(90deg) translateZ(100px);
+	}
+
+	.maxbox li:nth-child(5) {
+		-webkit-transform: rotateY(-90deg) translateZ(100px);
+	}
+
+	.maxbox li:nth-child(6) {
+		-webkit-transform: rotateY(90deg) translateZ(100px);
+	}
+
+	.box:hover ol li:nth-child(1) {
+		-webkit-transform: translateZ(300px);
+		width: 400px;
+		height: 400px;
+		opacity: 0.8;
+		left: -100px;
+		top: -100px;
+	}
+
+	.box:hover ol li:nth-child(2) {
+		-webkit-transform: rotateX(180deg) translateZ(300px);
+		width: 400px;
+		height: 400px;
+		opacity: 0.8;
+		left: -100px;
+		top: -100px;
+	}
+
+	.box:hover ol li:nth-child(3) {
+		-webkit-transform: rotateX(-90deg) translateZ(300px);
+		width: 400px;
+		height: 400px;
+		opacity: 0.8;
+		left: -100px;
+		top: -100px;
+	}
+
+	.box:hover ol li:nth-child(4) {
+		-webkit-transform: rotateX(90deg) translateZ(300px);
+		width: 400px;
+		height: 400px;
+		opacity: 0.8;
+		left: -100px;
+		top: -100px;
+	}
+
+	.box:hover ol li:nth-child(5) {
+		-webkit-transform: rotateY(-90deg) translateZ(300px);
+		width: 400px;
+		height: 400px;
+		opacity: 0.8;
+		left: -100px;
+		top: -100px;
+	}
+
+	.box:hover ol li:nth-child(6) {
+		-webkit-transform: rotateY(90deg) translateZ(300px);
+		width: 400px;
+		height: 400px;
+		opacity: 0.8;
+		left: -100px;
+		top: -100px;
+	}
+
+	@keyframes move {
+		0% {
+			-webkit-transform: rotateX(13deg) rotateY(0deg);
 		}
 
-		prev.addEventListener('click', function() {
-			if (curIndex === itemLen) {
-				curIndex = 0
-				layout()
-				return
-			}
-			curIndex++
-			layout()
-		})
+		100% {
+			-webkit-transform: rotateX(13deg) rotateY(360deg);
+		}
+	}
+</style>
 
-		next.addEventListener('click', function() {
-			if (curIndex === 0) {
-				return
-			}
-			curIndex--
-			layout()
-		})
-
-		carouselItem.forEach((el, index) => {
-			el.onclick = function() {
-				curIndex = index
-				layout()
-			}
-		})
-		layout()
-	</script>
-</html>
+<!-- 三、放上照片
+提示：照片和html、css文件放在一个文件夹。 -->
